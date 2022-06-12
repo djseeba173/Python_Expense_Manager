@@ -63,14 +63,19 @@ def delete():
         print(" ----------------------- ")
         print("|",row,"|")
         print(" ----------------------- ")
-        mycursor.execute("DELETE FROM Operation WHERE description = %s", (searched,))
-        db.commit()
-        print("Operation deleted")
+        rta = input("Are you sure you want to delete it? (y/n) ")
+        if rta == "y":
+            mycursor.execute("DELETE FROM Operation WHERE description = %s", (searched,))
+            db.commit()
+            print("Operation deleted")
+        else:
+            print("Operation not deleted")
     else:
         print("Operation not found")
 
 
 if __name__ == "__main__":
+    clear()
     print("Welcome to the CRUD app")
     print("My name is Boris and I'm a software developer")
     print("I'm here to help you manage your money")
